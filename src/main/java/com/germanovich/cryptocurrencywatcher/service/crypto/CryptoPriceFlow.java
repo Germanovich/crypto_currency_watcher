@@ -12,7 +12,7 @@ public class CryptoPriceFlow {
 
     public void checkPrice(final Collection<User> users) {
         users.forEach(user -> {
-            double percent = getDifference(user.getStartCryptoPrice(), user.getCrypto().getPrice_usd());
+            double percent = getDifference(user.getCrypto().getPrice(), user.getStartCryptoPrice());
             if (Math.abs(percent) > 1) {
                 log.warn('\"' + user.getCrypto().getSymbol() + '\"'
                         + ":\"" + user.getUserName() + '\"'

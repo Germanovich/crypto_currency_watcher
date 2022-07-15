@@ -46,7 +46,7 @@ public class CryptoInfoFlow {
         return Crypto.builder()
                 .id(object.get("id").getAsInt())
                 .symbol(object.get("symbol").getAsString())
-                .price_usd(object.get("price_usd").getAsDouble())
+                .price(object.get("price_usd").getAsDouble())
                 .build();
     }
 }

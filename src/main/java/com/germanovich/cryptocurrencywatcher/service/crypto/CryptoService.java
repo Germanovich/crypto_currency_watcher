@@ -25,7 +25,7 @@ public class CryptoService {
     public double getCryptoPrice(final int id) {
         Crypto crypto = cryptoRepository.findById(id)
                 .orElseThrow(() -> new BusinessException(MessageForUser.CRYPTO_DO_NOT_EXIST.get()));
-        return crypto.getPrice_usd();
+        return crypto.getPrice();
     }
 
     public Collection<Crypto> getCryptoList() {

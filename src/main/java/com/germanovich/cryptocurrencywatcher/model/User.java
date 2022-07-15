@@ -8,6 +8,9 @@ import lombok.experimental.SuperBuilder;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -15,11 +18,14 @@ import javax.persistence.Table;
 @Data
 @SuperBuilder
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "app_user")
-public class User extends AEntity {
+public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    protected Integer id;
     @Column(name = "user_name")
     private String userName;
     @OneToOne(cascade = CascadeType.ALL)
@@ -27,9 +33,9 @@ public class User extends AEntity {
     private Crypto crypto;
     private double startCryptoPrice;
 
-    public User(final String username, final Crypto crypto) {
-        this.userName = username;
+    public User(final String userName, final Crypto crypto) {
+        this.userName = userName;
         this.crypto = crypto;
-        this.startCryptoPrice = crypto.getPrice_usd();
+        this.startCryptoPrice = crypto.getPrice();
     }
 }
